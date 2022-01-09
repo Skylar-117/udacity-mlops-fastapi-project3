@@ -1,0 +1,14 @@
+python==3.8.12
+numpy
+pandas
+scikit-learn
+pytest
+requests
+fastapi==0.65.2
+uvicorn
+gunicorn
+flake8
+dvc
+dvc-s3
+jupyter
+jupyterlab

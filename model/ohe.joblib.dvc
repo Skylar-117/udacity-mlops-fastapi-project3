@@ -1,0 +1,4 @@
+outs:
+- md5: a0e1430a66e77beb912378fe3a6a6473
+  size: 4239
+  path: ohe.joblib
