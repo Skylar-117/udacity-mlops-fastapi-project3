@@ -5,13 +5,11 @@ Date: 2022-01-07
 """
 import logging
 import numpy as np
-import pandas as pd
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import OneHotEncoder, LabelBinarizer
 from sklearn.model_selection import KFold, cross_val_score
-from sklearn.metrics import accuracy_score, precision_score, recall_score, \
-    roc_auc_score, f1_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 
 def get_categorical_features():

@@ -10,5 +10,5 @@ gunicorn
 flake8
 dvc[s3]
 # dvc-s3
-jupyter
-jupyterlab
+# jupyter
+# jupyterlab
