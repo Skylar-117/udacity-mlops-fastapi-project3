@@ -9,6 +9,6 @@ uvicorn
 gunicorn
 flake8
 dvc
-dvc-s3
+# dvc-s3
 jupyter
 jupyterlab
