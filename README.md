@@ -56,16 +56,6 @@ In order to use newly created S3 bucket from the AWS CLI installed from the firs
 
 ## Github Actions Setup
 
-Create a YAML file named `test.yaml` under `./github/workflows` directory:  
-
-```shell
-# [if necessary] Create a `.github/workflows` directory inside your local Git repository if it does not already exist
-mkdir .github/workflows && cd .github/workflows
-
-# In the `.github/workflows` directory, create a file named test.yaml
-touch test.yaml
-```  
-
 * Setup GitHub Actions on your repository. You can use one of the pre-made GitHub Actions if at a minimum it runs pytest and flake8 on push and requires both to pass without error.
    * Make sure you set up the GitHub Action to have the same version of Python as you used in development.
 * Add your <a href="https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions" target="_blank">AWS credentials to the Action</a>.
