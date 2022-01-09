@@ -51,7 +51,7 @@ In order to use newly created S3 bucket from the AWS CLI installed from the firs
 * In the permissions selector, search for S3 and give it **AmazonS3FullAccess**
 * Tags are optional and can be skipped.
 * After reviewing your choices, click create user. 
-* To configure your AWS CLI, run ```aws configure``` in terminal, then type in the corresponding info from the credential.csv you just downloaded from the previous step.
+* To configure your AWS CLI, run ```aws configure``` in terminal, then type in the corresponding info from the `credential.csv` you just downloaded from the previous step.
 
 
 ## Github Actions Setup
@@ -69,10 +69,10 @@ Since the original raw data is messy, here I did some EDA using jupyter notebook
 dvc init
 
 # Create a remote DVC named `census` and point it to S3 bucket
-dvc remote add -d census s3://udacity-mlops-fastapi/data
+dvc remote add -d census s3://udacity-census
 
 # Add and push raw and clean data to remote S3 bucket
-dvc add data/raw_data/raw_census.csv data/clean_data/clean_census.csv
+dvc add data/raw_data/raw_census.csv data/clean_data/clean_census.csv model/model.joblib model/lb.joblib model/one.joblib
 dvc push
 ```
 
