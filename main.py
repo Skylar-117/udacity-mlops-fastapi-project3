@@ -20,11 +20,11 @@ def execute_pipeline(args):
         bc.execute()
 
     if (args.action == "combo" or args.action == "training"):
-        logging.info("Train/Test model procedure started")
+        logging.info("Model training procedure start ...")
         mt.execute()
 
     if (args.action == "combo" or args.action == "inference"):
-        logging.info("Score check procedure started")
+        logging.info("Model inference procedure start ...")
         mi.execute()
 
 

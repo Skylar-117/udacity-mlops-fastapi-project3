@@ -9,6 +9,6 @@ uvicorn
 gunicorn
 flake8
 dvc[s3]
-# dvc-s3
+# dvc-s3 # This is for conda install. For pip install, this should be dvs[s3]
 # jupyter
 # jupyterlab

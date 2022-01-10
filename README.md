@@ -1,4 +1,6 @@
-Working in a command line environment is recommended for ease of use with git and dvc. If on Windows, WSL1 or 2 is recommended.
+# Udacity MLOps - Deploy FastAPI on Heroku
+
+We will use AWS S3 to save the data and model files. Use DVC for data/model version control and link it to remote S3 bucket. Set up CI(continuous integration) workflow via Github Actions. Deploy machine learning pipeline via FastAPI on Heroku. Enable CD(continuous deployment) workflow on Heroku.
 
 
 ## Environment Setup
@@ -56,10 +58,25 @@ In order to use newly created S3 bucket from the AWS CLI installed from the firs
 
 ## Github Actions Setup
 
-* Setup GitHub Actions on your repository. You can use one of the pre-made GitHub Actions if at a minimum it runs pytest and flake8 on push and requires both to pass without error.
-   * Make sure you set up the GitHub Action to have the same version of Python as you used in development.
-* Add your <a href="https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions" target="_blank">AWS credentials to the Action</a>.
-* Set up <a href="https://github.com/iterative/setup-dvc" target="_blank">DVC in the action</a> and specify a command to `dvc pull`.
+* Setup GitHub Actions on your repository. Set up `python-version` inside of your `.github/workflows/[whatever-name-you-like].yml`
+* Add your AWS credentials to the Action using the following format:
+```shell
+- name: Configure AWS credentials
+   uses: aws-actions/configure-aws-credentials@v1
+   with:
+      aws-access-key-id: your_aws_access_key_id
+      aws-secret-access-key: your_aws_secret_access_key
+      aws-region: your_aws_region
+```
+* Set up <a href="https://github.com/iterative/setup-dvc" target="_blank">DVC in the action</a> and specify a command to `dvc pull` like the following:
+```shell
+- name: Setup DVC
+   uses: iterative/setup-dvc@v1
+- name: Pull data from DVC
+   run: |
+      dvc pull data -R
+```
+* Set up flake8 and pytest for lint check and unit testing.
 
 
 ## Data
@@ -69,7 +86,7 @@ Since the original raw data is messy, here I did some EDA using jupyter notebook
 dvc init
 
 # Create a remote DVC named `census` and point it to S3 bucket
-dvc remote add -d census s3://udacity-census
+dvc remote add -d census s3://[your_s3_bucket_name]
 
 # Add and push raw and clean data to remote S3 bucket
 dvc add data/raw_data/raw_census.csv data/clean_data/clean_census.csv model/model.joblib model/lb.joblib model/one.joblib
@@ -79,22 +96,33 @@ dvc push
 
 ## Model
 
-* Using the starter code, write a machine learning model that trains on the clean data and saves the model. Complete any function that has been started.
-* Write unit tests for at least 3 functions in the model code.
-* Write a function that outputs the performance of the model on slices of the data.
-   * Suggestion: for simplicity, the function can just output the performance on slices of just the categorical features.
-* Write a model card using the provided template.
+There are 3 main procedures: basic cleaning, model training and model inference. In order to run them separately, follow the next instructions:
+```shell
+# Execute basic cleaning
+python main.py --action basic_cleaning
+
+# Execute model training
+python main.py --action model_training
+
+# Execute model inference
+python main.py --action model_inference
+```
+
+If you want to run the entire pipeline, use the following code:
+```shell
+# Execute entire ml pipeline
+python main.py --action combo
+# Or
+python main.py
+```
 
 
-## API Creation
+## API servc locally
 
-* Create a RESTful API using FastAPI this must implement:
-   * GET on the root giving a welcome message.
-   * POST that does model inference.
-   * Type hinting must be used.
-   * Use a Pydantic model to ingest the body from POST. This model should contain an example.
-    * Hint: the data has names with hyphens and Python does not allow those as variable names. Do not modify the column names in the csv and instead use the functionality of FastAPI/Pydantic/etc to deal with this.
-* Write 3 unit tests to test the API (one for the GET and two for POST, one that tests each prediction).
+In order to see results from your FastAPI locally, run this command:
+```shell
+uvicorn src.api:app --reload
+```
 
 
 ## API Deployment - Heroku setup using Heroku CLI
@@ -145,9 +173,9 @@ git push heroku master
 ```
 
 
-* Create a new app and have it deployed from your GitHub repository.
-   * Enable automatic deployments that only deploy if your continuous integration passes.
-   * Hint: think about how paths will differ in your local environment vs. on Heroku.
-   * Hint: development in Python is fast! But how fast you can iterate slows down if you rely on your CI/CD to fail before fixing an issue. I like to run flake8 locally before I commit changes.
-* Set up DVC on Heroku using the instructions contained in the starter directory.
-* Write a script that uses the requests module to do one POST on your live API.
+# Heroku API checkup
+
+To check results returned from Heroku, run the following command:
+```shell
+python heroku_api.py
+```
