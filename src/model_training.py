@@ -53,9 +53,9 @@ def execute():
     model, ohe, lb = train_model(CLEAN_DATA)
 
     # Save estimator and encoders:
-    joblib.dump(model, "model/model.joblib")
-    joblib.dump(ohe, "model/ohe.joblib")
-    joblib.dump(lb, "model/lb.joblib")
+    joblib.dump(model, "./model/model.joblib")
+    joblib.dump(ohe, "./model/ohe.joblib")
+    joblib.dump(lb, "./model/lb.joblib")
 
 
 if __name__ == "__main__":

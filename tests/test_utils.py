@@ -15,7 +15,7 @@ import src.utils as u
 def data():
     """Obtain dataset
     """
-    df = pd.read_csv("./data/clean_data/clean_census.csv",
+    df = pd.read_csv("data/clean_data/clean_census.csv",
                      skipinitialspace=True)
     return df
 
@@ -23,8 +23,8 @@ def data():
 def test_process_data(data):
     """Check that split have same number of rows for X and y
     """
-    cat_encoder = joblib.load("./model/ohe.joblib")
-    label_binarizer = joblib.load("./model/lb.joblib")
+    cat_encoder = joblib.load("model/ohe.joblib")
+    label_binarizer = joblib.load("model/lb.joblib")
 
     X_valid, y_valid, _, _ = u.process_data(
         df=data,
@@ -41,9 +41,9 @@ def test_process_data(data):
 def test_inference_pos():
     """Check inference on positive class
     """
-    model = joblib.load("./model/model.joblib")
-    cat_encoder = joblib.load("./model/ohe.joblib")
-    label_binarizer = joblib.load("./model/lb.joblib")
+    model = joblib.load("model/model.joblib")
+    cat_encoder = joblib.load("model/ohe.joblib")
+    label_binarizer = joblib.load("model/lb.joblib")
 
     # Test sample:
     arr = np.array([["Private",
@@ -91,9 +91,9 @@ def test_inference_pos():
 def test_inference_neg():
     """Check inference on negative class
     """
-    model = joblib.load("./model/model.joblib")
-    cat_encoder = joblib.load("./model/ohe.joblib")
-    label_binarizer = joblib.load("./model/lb.joblib")
+    model = joblib.load("model/model.joblib")
+    cat_encoder = joblib.load("model/ohe.joblib")
+    label_binarizer = joblib.load("model/lb.joblib")
 
     # Test sample:
     arr = np.array([["Private",
