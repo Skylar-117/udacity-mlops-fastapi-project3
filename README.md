@@ -79,6 +79,28 @@ In order to use newly created S3 bucket from the AWS CLI installed from the firs
 * Set up flake8 and pytest for lint check and unit testing.
 
 
+## Github Secret Setup
+
+Since we are using AWS credential, I've used github secrets to add in aws_access_key_id and aws_secret_access_key instead of passing their values directly in `/github/workflows/test.yml`:
+```shell
+# [if needed] Install github secret command:
+brew install gn
+
+# Set up github secrets via gh:
+gh secret set AWS_ACCESS_KEY_ID
+gh secret set AWS_SECRET_ACCESS_KEY
+```
+
+Then, use `secrets.AWS_...` to set up github action like the following:
+```shell
+- name: Configure AWS credentials
+   uses: aws-actions/configure-aws-credentials@v1
+   with:
+      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+```
+
+
 ## Data DVC Version Control
 
 Since the original raw data is messy, here I did some EDA using jupyter notebook, then the cleaned data is saved as csv file.
