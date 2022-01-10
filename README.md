@@ -79,8 +79,10 @@ In order to use newly created S3 bucket from the AWS CLI installed from the firs
 * Set up flake8 and pytest for lint check and unit testing.
 
 
-## Data
+## Data DVC Version Control
+
 Since the original raw data is messy, here I did some EDA using jupyter notebook, then the cleaned data is saved as csv file.
+
 ```shell
 # Initialize DVC
 dvc init
@@ -92,6 +94,8 @@ dvc remote add -d census s3://[your_s3_bucket_name]
 dvc add data/raw_data/raw_census.csv data/clean_data/clean_census.csv model/model.joblib model/lb.joblib model/one.joblib
 dvc push
 ```
+
+Users may encounter errors when running dvc pull and dvc fetch, like WARNING: Cache 'xxxx' not found. or ERROR: failed to pull data from the cloud. The most common cause is changes pushed to Git without the corresponding data being uploaded to the DVC remote. Make sure to dvc push from the original project, and try again.[see here](https://dvc.org/doc/user-guide/troubleshooting)
 
 
 ## Model
