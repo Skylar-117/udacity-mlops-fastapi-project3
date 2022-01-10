@@ -13,7 +13,7 @@ from src.basic_cleaning import clean_data
 def data():
     """Obtain dataset
     """
-    df = pd.read_csv("data/raw_data/raw_census.csv", skipinitialspace=True)
+    df = pd.read_csv("./data/raw_data/raw_census.csv", skipinitialspace=True)
     df = clean_data(df)
     return df
 
