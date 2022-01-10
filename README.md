@@ -164,7 +164,7 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
 
 * Set up access to AWS on Heroku, if using the CLI:
 ```shell
-heroku config:set AWS_ACCESS_KEY_ID=AKIAVDR6R626IQLV6HA4 AWS_SECRET_ACCESS_KEY=Tb93MWxMsfcNE9MreDi/2RbBIw1gEqP6TModwJ2E
+heroku config:set AWS_ACCESS_KEY_ID=your_aws_access_key_id AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
 ```
 
 * Push code to Heroku:
@@ -179,3 +179,8 @@ To check results returned from Heroku, run the following command:
 ```shell
 python heroku_api.py
 ```
+
+# What I can see
+On github side: After I do `git push`, I can see Github Actions will show a spnning orange circle meaning the CI workflow is working. Then after a while, if all code/checks/tests passed, then a green check mark would show with the corresponding commit number.
+
+On heroku side: After the green check mark shwoing on github actions CI workflow, a new deploy with three flashing dots will appear in the `Latest activity` part of the `Deploy` section from my heroku dashboard. Besides, I can also click the `view process` (I forget the exact botton name) to see the entire process just like you do `git push heroku master` in your terminal withou github actions CI setup. Then after a short amount of time, my github repo (aka FastAPI) will be deployed by heroku, and I can click the `Open app` at the uppder right of my heroku dashboard to view the home page of my app and the ml prediction :)
