@@ -168,7 +168,8 @@ def train_model(X_train, y_train, cv_scores):
     for s in cv_scores:
         cv_score = cross_val_score(model, X_train, y_train, scoring=s,
                                    cv=cv, n_jobs=-1)
-        logging.info(f"{s}: {cv_score}:.2f")
+        _cv_scores = list(map(lambda x: round(x, 2), cv_score))
+        logging.info(f"{s}: {_cv_scores}")
 
     return model
 
