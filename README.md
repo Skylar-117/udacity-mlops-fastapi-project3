@@ -136,7 +136,7 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
 
 * Set up access to AWS on Heroku, if using the CLI:
 ```shell
-heroku config:set AWS_ACCESS_KEY_ID=ASIAVDR6R626OPFTBTYS AWS_SECRET_ACCESS_KEY=OWoS0uGvMC36vUehmDHx2sFj2NSt71ZmOu0g47wZ
+heroku config:set AWS_ACCESS_KEY_ID=AKIAVDR6R626IQLV6HA4 AWS_SECRET_ACCESS_KEY=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
 ```
 
 * Push code to Heroku:

@@ -81,11 +81,11 @@ def execute():
     """Execute inference pipeline
     """
     # Set up paths:
-    CLEAN_DATA_PATH = "./data/clean_data/clean_census.csv"
-    SCORE_TXT_PATH = "./model/slice_metrics.txt"
-    MODEL_PATH = "./model/model.joblib"
-    CAT_ENCODER_PATH = "./model/ohe.joblib"
-    LABEL_BINARIZER_PATH = "./model/lb.joblib"
+    CLEAN_DATA_PATH = "data/clean_data/clean_census.csv"
+    SCORE_TXT_PATH = "model/slice_metrics.txt"
+    MODEL_PATH = "model/model.joblib"
+    CAT_ENCODER_PATH = "model/ohe.joblib"
+    LABEL_BINARIZER_PATH = "model/lb.joblib"
 
     # Load clean data:
     CLEAN_DATA = pd.read_csv(CLEAN_DATA_PATH, skipinitialspace=True)
