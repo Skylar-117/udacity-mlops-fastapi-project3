@@ -53,9 +53,9 @@ def run_sanity_check(test_dir):
 
     else:
         for func in test_functions_for_get:
+            source = inspect.getsource(getattr(module, func))
             _con1 = (source.find(".json") != -1)
             _con2 = (source.find("json.loads") != -1)
-            source = inspect.getsource(getattr(module, func))
             if source.find(".status_code") != -1:
                 TEST_FOR_GET_METHOD_RESPONSE_CODE = True
             if _con1 or _con2:
@@ -98,9 +98,9 @@ def run_sanity_check(test_dir):
             SANITY_TEST_PASSING = False
 
         for func in test_functions_for_post:
+            source = inspect.getsource(getattr(module, func))
             _con1 = (source.find(".json") != -1)
             _con2 = (source.find("json.loads") != -1)
-            source = inspect.getsource(getattr(module, func))
             if source.find(".status_code") != -1:
                 TEST_FOR_POST_METHOD_RESPONSE_CODE = True
             if _con1 or _con2:
